@@ -2,3 +2,6 @@ node_modules/
 bench-report.json
 .turbo/
 *.log
+.vercel
+.next/
+next-env.d.ts

@@ -1,4 +1,4 @@
-import type { RunResult, Runtime, Turn } from '../../core/src/types.ts';
+import type { RunResult, Runtime, Turn } from '@bench/core';
 
 /**
  * The whole runtime: one loop, one switch. No graph, no framework.

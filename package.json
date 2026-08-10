@@ -5,6 +5,7 @@
   "description": "Native tool-calling loop vs LangGraph state graph, measured on the same task with a deterministic model.",
   "type": "module",
   "workspaces": [
+    "apps/*",
     "packages/*"
   ],
   "engines": {

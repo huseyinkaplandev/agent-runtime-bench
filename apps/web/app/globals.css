@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-surface-0: #000000;
+  --color-surface-1: #181818;
+  --color-surface-2: #1f1f1f;
+  --color-surface-3: #272727;
+  --color-line: #313131;
+
+  --color-ink: #ffffff;
+  --color-ink-muted: #9b9b9b;
+
+  --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-surface-0);
+  color: var(--color-ink);
+}
+
+.heading-fade {
+  background-image: linear-gradient(to right, #ffffff, #9b9b9b);
+  background-clip: text;
+  color: transparent;
+}
+
+.reveal {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(64px);
+  transition:
+    opacity 800ms var(--ease-fluid),
+    filter 800ms var(--ease-fluid),
+    transform 800ms var(--ease-fluid);
+}
+
+.reveal[data-visible='true'] {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}

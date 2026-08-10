@@ -1,5 +1,5 @@
 import { Annotation, END, START, StateGraph } from '@langchain/langgraph';
-import type { ModelStep, RunResult, Runtime, Tool, Turn } from '../../core/src/types.ts';
+import type { ModelStep, RunResult, Runtime, Tool, Turn } from '@bench/core';
 
 /**
  * The same policy as native-loop, expressed as an explicit state graph.

@@ -1,5 +1,8 @@
 # agent-runtime-bench
 
+**[Run it live →](https://agent-runtime-bench.vercel.app)** — press one button and both runtimes
+execute on the server, step by step, in front of you. Nothing on that page is a recording.
+
 Two agent runtimes, one policy, one deterministic model, three scenarios. Same task, measured
 side by side: a hand-written tool-calling loop versus an explicit LangGraph state graph.
 
@@ -83,12 +86,18 @@ Turborepo workspace, TypeScript, no build step — Node's native type stripping 
 sources directly.
 
 ```
+apps/
+  web/           Next.js demo: runs both runtimes on request and replays the transcripts
 packages/
   core/          types, scripted model, tools, the three scenarios
   native-agent/  the loop
   graph-agent/   the LangGraph state graph
   bench/         runner, markdown/JSON report, tests
 ```
+
+The demo is not a static page with the numbers pasted in. `GET /api/bench` executes both
+runtimes on a Node runtime, LangGraph included, and returns the transcripts the page walks
+through.
 
 ## Run it
 

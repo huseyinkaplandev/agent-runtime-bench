@@ -1,7 +1,7 @@
-import { SCENARIOS } from '../../core/src/scenario.ts';
-import type { RunMetrics, Runtime } from '../../core/src/types.ts';
-import { graphRuntime } from '../../graph-agent/src/index.ts';
-import { nativeRuntime } from '../../native-agent/src/index.ts';
+import { SCENARIOS } from '@bench/core';
+import type { RunMetrics, Runtime } from '@bench/core';
+import { graphRuntime } from '@bench/graph-agent';
+import { nativeRuntime } from '@bench/native-agent';
 
 export const RUNTIMES: Runtime[] = [nativeRuntime, graphRuntime];
 const MAX_STEPS = 8;
@@ -33,6 +33,50 @@ export async function runBench(): Promise<BenchRow[]> {
   }
 
   return rows;
+}
+
+export type DetailedRun = {
+  scenario: string;
+  prompt: string;
+  expected: string;
+  runtime: string;
+  outcome: string;
+  correct: boolean;
+  metrics: RunMetrics;
+  transcript: unknown[];
+};
+
+/** Same execution as runBench, but keeps the transcripts for the UI. */
+export async function runDetailed(): Promise<DetailedRun[]> {
+  const runs: DetailedRun[] = [];
+
+  for (const scenario of SCENARIOS) {
+    for (const runtime of RUNTIMES) {
+      const model = scenario.model();
+      model.reset();
+
+      const result = await runtime.run({
+        scenario: scenario.name,
+        prompt: scenario.prompt,
+        model,
+        tools: scenario.tools(),
+        maxSteps: MAX_STEPS,
+      });
+
+      runs.push({
+        scenario: scenario.name,
+        prompt: scenario.prompt,
+        expected: scenario.expect,
+        runtime: runtime.name,
+        outcome: result.outcome.resolution,
+        correct: result.outcome.resolution === scenario.expect,
+        metrics: result.metrics,
+        transcript: result.transcript,
+      });
+    }
+  }
+
+  return runs;
 }
 
 export function toMarkdown(rows: BenchRow[]): string {

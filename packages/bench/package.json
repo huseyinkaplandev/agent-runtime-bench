@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "exports": {
+    ".": "./src/run.ts"
+  },
   "scripts": {
     "bench": "node src/cli.ts",
     "test": "node --test test/*.test.ts"
