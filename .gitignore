@@ -1,0 +1,4 @@
+node_modules/
+bench-report.json
+.turbo/
+*.log

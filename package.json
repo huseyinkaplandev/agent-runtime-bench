@@ -1,0 +1,22 @@
+{
+  "name": "agent-runtime-bench",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Native tool-calling loop vs LangGraph state graph, measured on the same task with a deterministic model.",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "bench": "node packages/bench/src/cli.ts",
+    "test": "node --test packages/**/test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "typescript": "^5.7.0"
+  }
+}
