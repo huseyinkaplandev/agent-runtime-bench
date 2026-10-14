@@ -3,6 +3,10 @@
 **[Run it live →](https://agent-runtime-bench.vercel.app)** — press one button and both runtimes
 execute on the server, step by step, in front of you. Nothing on that page is a recording.
 
+**Follow-up:** [decision-bench](https://github.com/huseyinkaplandev/decision-bench) takes this agent's
+refund decision to real models: a chat model answering in JSON, the same model with a strict schema,
+and a decision model that returns a probability. [Move the threshold yourself](https://huseyinkaplan.dev/lab/decision-bench/).
+
 Two agent runtimes, one policy, one deterministic model, three scenarios. Same task, measured
 side by side: a hand-written tool-calling loop versus an explicit LangGraph state graph.
 
